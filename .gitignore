@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+_site/
+*.tsbuildinfo
+
+# Tests
+coverage/
+
+# Caches
+.eslintcache
+.sass-cache/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
