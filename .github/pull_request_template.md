@@ -8,13 +8,13 @@
 
 ## Commit order (tests → implementation)
 
-| Function / logic                                        | Tests commit | Implementation commit |
-| ------------------------------------------------------- | ------------ | --------------------- |
-| `debounce`                                              |              |                       |
-| `mapCountryResponse`                                    |              |                       |
+| Function / logic                                         | Tests commit | Implementation commit |
+| -------------------------------------------------------- | ------------ | --------------------- |
+| `debounce`                                               |              |                       |
+| `mapCountryResponse`                                     |              |                       |
 | Error classification (Abort / Timeout / HttpError / 404) |              |                       |
-| `searchCountries`                                       |              |                       |
-| Stale response race test (separate commit)              |              | —                     |
+| `searchCountries`                                        |              |                       |
+| Stale response race test (separate commit)               |              | —                     |
 
 ## Behaviour checklist (checked manually on the deployment)
 
