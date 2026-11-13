@@ -1,0 +1,26 @@
+{
+  "name": "country-search",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:ts && npm run build:css",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:css": "sass --no-source-map src/styles/main.scss dist/main.css",
+    "watch:ts": "tsc -p tsconfig.build.json --watch",
+    "watch:css": "sass --watch --no-source-map src/styles/main.scss dist/main.css",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "AlenaVP",
+  "license": "ISC",
+  "private": true,
+  "type": "module",
+  "description": "Live country search with request cancellation, built with TypeScript and TDD.",
+  "devDependencies": {
+    "sass": "^1.108.2",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}
