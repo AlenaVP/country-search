@@ -14,9 +14,32 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "watch:ts": "tsc -p tsconfig.build.json --watch",
-    "watch:css": "sass --watch --no-source-map src/styles/main.scss dist/main.css"
+    "watch:css": "sass --watch --no-source-map src/styles/main.scss dist/main.css",
+    "prepare": "husky"
   },
-  "keywords": [],
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,html,scss,md,yml}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "fetch",
+    "Promise",
+    "async/await",
+    "AbortController",
+    "debounce",
+    "error handling",
+    "TDD",
+    "FIRST",
+    "Vitest",
+    "ESLint",
+    "Prettier",
+    "Husky"
+  ],
   "author": "AlenaVP",
   "license": "ISC",
   "private": true,
@@ -26,6 +49,8 @@
     "@eslint/js": "^9.36.0",
     "eslint": "^9.36.0",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.9.10",
     "sass": "^1.108.2",
     "typescript": "^5.9.3",
