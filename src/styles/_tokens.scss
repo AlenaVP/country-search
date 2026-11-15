@@ -1,20 +1,15 @@
-// Design tokens: the only place where raw values (colors, sizes) live.
-// Components use these variables and never hard-code a value.
+$color-ground: #f1f4f6;
+$color-grid: #e4eaef;
+$color-surface: #ffffff;
+$color-ink: #0f1e2e;
+$color-muted: #51606f;
+$color-line: #d5dce3;
+$color-line-strong: #8c99a8;
+$color-accent: #0b6e6e;
+$color-danger: #b3261e;
+$color-danger-surface: #fceeec;
+$color-backdrop: rgba($color-ink, 0.6);
 
-// Colors
-$color-ground: #f1f4f6; // page background
-$color-grid: #e4eaef; // map grid lines, skeleton blocks, row dividers
-$color-surface: #ffffff; // cards, input, dialog
-$color-ink: #0f1e2e; // main text, input border, primary button
-$color-muted: #51606f; // secondary text (6.4:1 on white)
-$color-line: #d5dce3; // card and chip borders
-$color-line-strong: #8c99a8; // dashed border of the "nothing found" panel
-$color-accent: #0b6e6e; // focus ring, spinner
-$color-danger: #b3261e; // error border and icon
-$color-danger-surface: #fceeec; // error panel background
-$color-backdrop: rgba($color-ink, 0.6); // dialog backdrop
-
-// Typography: system fonts, no external requests
 $font-family:
   system-ui,
   -apple-system,
@@ -24,48 +19,43 @@ $font-family:
   Arial,
   sans-serif;
 
-$font-size-xs: 0.75rem; // 12px: country codes
-$font-size-sm: 0.875rem; // 14px: labels, card rows, status line
-$font-size-md: 1rem; // 16px: body
-$font-size-lg: 1.125rem; // 18px: search input
-$font-size-xl: 1.25rem; // 20px: card and message titles
-$font-size-2xl: 2rem; // 32px: page and dialog titles
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 2rem;
 
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
-$line-height-tight: 1.2; // headings
-$line-height-base: 1.5; // text
+$line-height-tight: 1.2;
+$line-height-base: 1.5;
 
-// Spacing: 4px scale
-$space-1: 0.25rem; // 4px
-$space-2: 0.5rem; // 8px
-$space-3: 0.75rem; // 12px
-$space-4: 1rem; // 16px
-$space-5: 1.25rem; // 20px
-$space-6: 1.5rem; // 24px
-$space-8: 2rem; // 32px
-$space-14: 3.5rem; // 56px
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.25rem;
+$space-6: 1.5rem;
+$space-8: 2rem;
+$space-14: 3.5rem;
 
-// Shape
-$radius-sm: 0.25rem; // 4px: chips, skeleton blocks
-$radius-md: 0.5rem; // 8px: cards, input, buttons, panels
-$radius-lg: 0.75rem; // 12px: dialog
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 0.75rem;
 $border-width: 1px;
-$border-width-strong: 2px; // search input
+$border-width-strong: 2px;
 
-// Effects
 $shadow-dialog: 0 24px 48px rgba($color-ink, 0.3);
 $focus-ring: 0 0 0 3px rgba($color-accent, 0.25);
 
-// Layout
-$container-width: 60rem; // 960px
-$card-min-width: 16.25rem; // 260px
-$grid-cell: 3rem; // 48px: background grid step
-$control-height: 2.75rem; // 44px: minimum click target
-$input-height: 3.5rem; // 56px
+$container-width: 60rem;
+$card-min-width: 16.25rem;
+$grid-cell: 3rem;
+$control-height: 2.75rem;
+$input-height: 3.5rem;
 
-// Motion
 $duration-fast: 150ms;

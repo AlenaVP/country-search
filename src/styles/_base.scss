@@ -1,4 +1,3 @@
-// Global rules for plain elements. No classes here: components live in components/.
 @use 'tokens' as *;
 
 *,
@@ -41,7 +40,6 @@ ul {
   list-style: none;
 }
 
-// Form controls do not inherit the font by default
 button,
 input {
   color: inherit;
@@ -57,7 +55,6 @@ img {
   max-width: 100%;
 }
 
-// One focus style for every interactive element (keyboard only)
 :focus-visible {
   outline: $border-width-strong solid $color-accent;
   outline-offset: $border-width-strong;
