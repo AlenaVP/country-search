@@ -6,6 +6,15 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-gutter: stable; // keeps the scrollbar space, so the page does not jump when scrolling is locked
+
+  // No page scrolling under an open modal dialog
+  &:has(dialog[open]) {
+    overflow: hidden;
+  }
+}
+
 body {
   min-height: 100vh;
   margin: 0;

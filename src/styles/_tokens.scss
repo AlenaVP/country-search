@@ -57,6 +57,8 @@ $focus-ring: 0 0 0 3px rgba($color-accent, 0.25);
 
 $container-width: 60rem;
 $card-min-width: 16.25rem;
+$dialog-width: 35rem; // 560px
+$flag-height-lg: 4.5rem; // 72px: flag in the dialog
 $grid-cell: 3rem;
 $control-height: 2.75rem;
 $input-height: 3.5rem;
@@ -66,6 +68,7 @@ $icon-globe: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' v
 $icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E");
 $icon-search-off: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5M8.5 11h5'/%3E%3C/svg%3E");
 $icon-alert: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4L2.5 20h19L12 4zM12 10v4.5M12 17.3v.2'/%3E%3C/svg%3E");
+$icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E");
 
 $duration-fast: 150ms;
 $duration-spin: 800ms;

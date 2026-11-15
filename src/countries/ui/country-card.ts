@@ -3,7 +3,7 @@ import type { Country } from '../types/country.ts';
 
 const MISSING_VALUE = '—';
 
-export function createCountryCard(country: Country): HTMLElement {
+export function createCountryCard(country: Country, onSelect: (country: Country) => void): HTMLElement {
   // The mapper falls back to the name when the API gives no code: do not print the name twice
   const code = country.code === country.name ? '' : country.code;
 
@@ -25,6 +25,10 @@ export function createCountryCard(country: Country): HTMLElement {
         ],
       }),
     ],
+  });
+
+  card.addEventListener('click', () => {
+    onSelect(country);
   });
 
   return createElement('li', { className: 'results__item', children: [card] });
