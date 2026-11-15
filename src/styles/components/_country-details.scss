@@ -3,7 +3,7 @@
 .country-details {
   width: calc(100% - #{$space-8});
   max-width: $dialog-width;
-  padding: 0; // the padding lives in __content, see the backdrop click in country-details.ts
+  padding: 0;
   border: 0;
   border-radius: $radius-lg;
   background-color: $color-surface;

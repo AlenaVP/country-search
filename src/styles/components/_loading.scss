@@ -24,7 +24,6 @@
     border-radius: $radius-sm;
     background-color: $color-grid;
 
-    // The first line stands for the flag, the second for the country name
     &:first-child {
       width: $space-14;
       height: $control-height;

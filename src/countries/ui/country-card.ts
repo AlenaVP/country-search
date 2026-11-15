@@ -4,7 +4,6 @@ import type { Country } from '../types/country.ts';
 const MISSING_VALUE = '—';
 
 export function createCountryCard(country: Country, onSelect: (country: Country) => void): HTMLElement {
-  // The mapper falls back to the name when the API gives no code: do not print the name twice
   const code = country.code === country.name ? '' : country.code;
 
   const card = createElement('button', {
@@ -39,7 +38,6 @@ function createFlag(flagUrl: string | null): HTMLElement {
     return createElement('span', { className: 'country-card__flag country-card__flag--missing' });
   }
 
-  // Empty alt: the flag is decorative here, the country name follows as text
   return createElement('img', { className: 'country-card__flag', attrs: { src: flagUrl, alt: '' } });
 }
 

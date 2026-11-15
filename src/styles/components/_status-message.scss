@@ -55,7 +55,6 @@
     font-weight: $font-weight-semibold;
   }
 
-  // Error: solid red border, tinted background, alert icon
   &--error {
     border: $border-width solid $color-danger;
     background-color: $color-danger-surface;

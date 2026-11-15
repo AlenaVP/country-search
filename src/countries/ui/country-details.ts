@@ -13,7 +13,6 @@ export interface CountryDetails {
 export function createCountryDetails(): CountryDetails {
   const dialog = createElement('dialog', { className: 'country-details', attrs: { 'aria-labelledby': TITLE_ID } });
 
-  // The dialog has no padding, so a click on the dialog itself can only be a click on the backdrop
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) {
       dialog.close();
@@ -61,7 +60,6 @@ function createHeading(country: Country): HTMLElement {
     children: [createElement('h2', { className: 'country-details__title', text: country.name, attrs: { id: TITLE_ID } })],
   });
 
-  // The mapper falls back to the name when the API gives no code: do not print the name twice
   if (country.code !== country.name) {
     heading.append(createElement('span', { className: 'country-details__code', text: country.code }));
   }
