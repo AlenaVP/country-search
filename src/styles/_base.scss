@@ -1,0 +1,74 @@
+// Global rules for plain elements. No classes here: components live in components/.
+@use 'tokens' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: $color-ground;
+  background-image:
+    linear-gradient($color-grid $border-width, transparent $border-width),
+    linear-gradient(90deg, $color-grid $border-width, transparent $border-width);
+  background-size: $grid-cell $grid-cell;
+  color: $color-ink;
+  font-family: $font-family;
+  font-size: $font-size-md;
+  line-height: $line-height-base;
+}
+
+h1,
+h2,
+p,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+// Form controls do not inherit the font by default
+button,
+input {
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+// One focus style for every interactive element (keyboard only)
+:focus-visible {
+  outline: $border-width-strong solid $color-accent;
+  outline-offset: $border-width-strong;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
