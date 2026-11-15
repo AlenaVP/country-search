@@ -1,0 +1,52 @@
+@use '../tokens' as *;
+
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__field {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: $space-4;
+      width: $space-5;
+      height: $space-5;
+      background-color: $color-muted;
+      transform: translateY(-50%);
+      mask: $icon-search center / contain no-repeat;
+      pointer-events: none;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: $input-height;
+    padding: 0 $space-4 0 ($space-4 + $space-5 + $space-3);
+    border: $border-width-strong solid $color-ink;
+    border-radius: $radius-md;
+    background-color: $color-surface;
+    font-size: $font-size-lg;
+    transition:
+      border-color $duration-fast,
+      box-shadow $duration-fast;
+
+    &::placeholder {
+      color: $color-muted;
+    }
+
+    &:focus-visible {
+      border-color: $color-accent;
+      outline: none;
+      box-shadow: $focus-ring;
+    }
+  }
+}
