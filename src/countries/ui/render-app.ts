@@ -1,6 +1,7 @@
 import { createElement } from '../../shared/create-element.ts';
 import type { SearchStateListener } from '../state/search-controller.ts';
 import type { SearchState } from '../types/search-state.ts';
+import { createCountryCard } from './country-card.ts';
 import { ERROR_MESSAGES } from './error-messages.ts';
 import { createLoadingIndicator } from './loading-indicator.ts';
 import { createSearchInput } from './search-input.ts';
@@ -45,6 +46,11 @@ function renderResults(state: SearchState, handlers: AppHandlers): Node[] {
       return [createElement('p', { className: 'results__hint', text: 'Start typing to see matching countries.' })];
     case 'loading':
       return createLoadingIndicator(state.query);
+    case 'success':
+      return [
+        createElement('p', { className: 'results__status', text: formatCount(state.countries.length, state.query) }),
+        createElement('ul', { className: 'results__list', children: state.countries.map(createCountryCard) }),
+      ];
     case 'empty':
       return [
         createStatusMessage({
@@ -62,7 +68,11 @@ function renderResults(state: SearchState, handlers: AppHandlers): Node[] {
           action: { label: 'Retry', onClick: handlers.onRetry },
         }),
       ];
-    default:
-      return [];
   }
+}
+
+function formatCount(count: number, query: string): string {
+  const noun = count === 1 ? 'country' : 'countries';
+
+  return `${count} ${noun} found for “${query}”`;
 }
