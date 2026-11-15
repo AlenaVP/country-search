@@ -6,6 +6,9 @@ const update = renderApp(document.body, {
   onSearch: (query) => {
     controller.search(query);
   },
+  onRetry: () => {
+    controller.retry();
+  },
 });
 
 const controller = new SearchController(searchCountries, update);

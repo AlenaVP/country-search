@@ -1,10 +1,14 @@
 import { createElement } from '../../shared/create-element.ts';
 import type { SearchStateListener } from '../state/search-controller.ts';
 import type { SearchState } from '../types/search-state.ts';
+import { ERROR_MESSAGES } from './error-messages.ts';
+import { createLoadingIndicator } from './loading-indicator.ts';
 import { createSearchInput } from './search-input.ts';
+import { createStatusMessage } from './status-message.ts';
 
 export interface AppHandlers {
   onSearch: (query: string) => void;
+  onRetry: () => void;
 }
 
 /** Builds the static shell once and returns a function that redraws only the results region. */
@@ -26,7 +30,7 @@ export function renderApp(root: HTMLElement, handlers: AppHandlers): SearchState
   });
 
   const update: SearchStateListener = (state) => {
-    results.replaceChildren(...renderResults(state));
+    results.replaceChildren(...renderResults(state, handlers));
   };
 
   root.append(app);
@@ -35,10 +39,29 @@ export function renderApp(root: HTMLElement, handlers: AppHandlers): SearchState
   return update;
 }
 
-function renderResults(state: SearchState): Node[] {
+function renderResults(state: SearchState, handlers: AppHandlers): Node[] {
   switch (state.status) {
     case 'idle':
       return [createElement('p', { className: 'results__hint', text: 'Start typing to see matching countries.' })];
+    case 'loading':
+      return createLoadingIndicator(state.query);
+    case 'empty':
+      return [
+        createStatusMessage({
+          variant: 'empty',
+          title: `No countries match “${state.query}”`,
+          text: 'Check the spelling or try a shorter name.',
+        }),
+      ];
+    case 'error':
+      return [
+        createStatusMessage({
+          variant: 'error',
+          title: 'Could not load countries',
+          text: ERROR_MESSAGES[state.kind],
+          action: { label: 'Retry', onClick: handlers.onRetry },
+        }),
+      ];
     default:
       return [];
   }

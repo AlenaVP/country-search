@@ -5,8 +5,21 @@
   flex-direction: column;
   gap: $space-4;
 
-  &__hint {
+  &__hint,
+  &__status {
     color: $color-muted;
     font-size: $font-size-sm;
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min($card-min-width, 100%), 1fr));
+    gap: $space-5;
   }
 }

@@ -1,0 +1,50 @@
+@use '../tokens' as *;
+
+.spinner {
+  width: $space-4;
+  height: $space-4;
+  border: $border-width-strong solid $color-spinner-track;
+  border-top-color: $color-accent;
+  border-radius: 50%;
+  animation: spin $duration-spin linear infinite;
+}
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-5;
+  border: $border-width solid $color-line;
+  border-radius: $radius-md;
+  background-color: $color-surface;
+  animation: pulse $duration-pulse ease-in-out infinite;
+
+  &__line {
+    height: $space-5;
+    border-radius: $radius-sm;
+    background-color: $color-grid;
+
+    // The first line stands for the flag, the second for the country name
+    &:first-child {
+      width: $space-14;
+      height: $control-height;
+    }
+
+    &:nth-child(2) {
+      width: 60%;
+      height: $space-6;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
