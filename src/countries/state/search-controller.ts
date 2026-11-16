@@ -35,6 +35,12 @@ export class SearchController {
     this.runDebounced(this.query);
   }
 
+  /** Runs a complete query (a history item) at once, without the debounce delay. */
+  searchNow(input: string): void {
+    this.query = input.trim();
+    this.retry();
+  }
+
   retry(): void {
     if (this.query === '') {
       return;
@@ -50,6 +56,7 @@ export class SearchController {
       return;
     }
 
+    this.abortController?.abort();
     const abortController = new AbortController();
     this.abortController = abortController;
 
