@@ -1,0 +1,60 @@
+{
+  "name": "country-search",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:ts && npm run build:css",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:css": "sass --no-source-map src/styles/main.scss dist/main.css",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "watch:ts": "tsc -p tsconfig.build.json --watch",
+    "watch:css": "sass --watch --no-source-map src/styles/main.scss dist/main.css",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,html,scss,md,yml}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "fetch",
+    "Promise",
+    "async/await",
+    "AbortController",
+    "debounce",
+    "error handling",
+    "TDD",
+    "FIRST",
+    "Vitest",
+    "ESLint",
+    "Prettier",
+    "Husky"
+  ],
+  "author": "AlenaVP",
+  "license": "ISC",
+  "private": true,
+  "type": "module",
+  "description": "Live country search with request cancellation, built with TypeScript and TDD.",
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.9.10",
+    "sass": "^1.108.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vitest": "^5.1.0"
+  }
+}

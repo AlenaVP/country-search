@@ -1,0 +1,75 @@
+@use '../tokens' as *;
+
+.status-message {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-5;
+  padding: $space-7 $space-8;
+  border: $border-width dashed $color-line-strong;
+  border-radius: $radius-md;
+  background-color: $color-surface;
+
+  &__icon {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: $space-12;
+    height: $space-12;
+    border-radius: 50%;
+    background-color: $color-ground;
+
+    &::before {
+      content: '';
+      width: $space-6;
+      height: $space-6;
+      background-color: $color-muted;
+      mask: $icon-search-off center / contain no-repeat;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-1;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__text {
+    color: $color-muted;
+  }
+
+  &__action {
+    min-height: $control-height;
+    margin-top: $space-3;
+    padding: 0 $space-6;
+    border: 0;
+    border-radius: $radius-md;
+    background-color: $color-ink;
+    color: $color-surface;
+    font-weight: $font-weight-semibold;
+  }
+
+  &--error {
+    border: $border-width solid $color-danger;
+    background-color: $color-danger-surface;
+  }
+
+  &--error &__icon {
+    background-color: $color-surface;
+
+    &::before {
+      background-color: $color-danger;
+      mask-image: $icon-alert;
+    }
+  }
+
+  &--error &__text {
+    color: $color-ink;
+  }
+}
