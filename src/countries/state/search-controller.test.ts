@@ -203,4 +203,65 @@ describe('SearchController', () => {
       expect(states).toEqual([]);
     });
   });
+
+  describe('immediate search', () => {
+    it('sends the request for the trimmed query at once, without the debounce', () => {
+      controller.searchNow(' spain ');
+
+      expect(searchFn).toHaveBeenCalledTimes(1);
+      expect(searchFn).toHaveBeenCalledWith('spain', expect.any(AbortSignal));
+    });
+
+    it('reports loading and then the result', async () => {
+      controller.searchNow('spain');
+      await vi.advanceTimersByTimeAsync(0);
+
+      expect(states).toEqual([
+        { status: 'loading', query: 'spain' },
+        { status: 'success', query: 'spain', countries: [spain] },
+      ]);
+    });
+
+    it('aborts the active request', async () => {
+      searchFn.mockImplementation(pendingUntilAborted);
+      controller.search('sp');
+      await passDebounce();
+      const signal = searchFn.mock.calls[0]?.[1];
+
+      controller.searchNow('spain');
+
+      expect(signal?.aborted).toBe(true);
+    });
+
+    it('drops a debounced search for another text that was still waiting', async () => {
+      controller.search('sp');
+      controller.searchNow('spain');
+      await passDebounce();
+
+      expect(searchFn).toHaveBeenCalledTimes(1);
+      expect(searchFn).toHaveBeenCalledWith('spain', expect.any(AbortSignal));
+    });
+
+    it('keeps a single live request when a debounced search for the same text fires later', async () => {
+      searchFn.mockImplementation(pendingUntilAborted);
+      controller.search('spain');
+      controller.searchNow('spain');
+      await passDebounce();
+      const [first, second] = searchFn.mock.calls.map((call) => call[1]);
+
+      expect(first?.aborted).toBe(true);
+      expect(second?.aborted).toBe(false);
+    });
+
+    it('makes retry repeat the query that was searched immediately', async () => {
+      searchFn.mockRejectedValueOnce(new HttpError(500));
+      controller.searchNow('spain');
+      await vi.advanceTimersByTimeAsync(0);
+
+      controller.retry();
+
+      expect(searchFn).toHaveBeenCalledTimes(2);
+      expect(searchFn).toHaveBeenLastCalledWith('spain', expect.any(AbortSignal));
+    });
+  });
 });
