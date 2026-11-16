@@ -5,6 +5,7 @@ import type { SearchState } from '../types/search-state.ts';
 import { createCountryCard } from './country-card.ts';
 import { createCountryDetails } from './country-details.ts';
 import { ERROR_MESSAGES } from './error-messages.ts';
+import { createHistoryList } from './history-list.ts';
 import { createLoadingIndicator } from './loading-indicator.ts';
 import { createSearchInput } from './search-input.ts';
 import { createStatusMessage } from './status-message.ts';
@@ -12,6 +13,12 @@ import { createStatusMessage } from './status-message.ts';
 export interface AppHandlers {
   onSearch: (query: string) => void;
   onRetry: () => void;
+  onHistorySelect: (query: string) => void;
+}
+
+export interface AppView {
+  showState: SearchStateListener;
+  showHistory: (queries: string[]) => void;
 }
 
 interface ResultsHandlers {
@@ -19,8 +26,8 @@ interface ResultsHandlers {
   onSelect: (country: Country) => void;
 }
 
-/** Builds the static shell once and returns a function that redraws only the results region. */
-export function renderApp(root: HTMLElement, handlers: AppHandlers): SearchStateListener {
+/** Builds the static shell once and returns functions that redraw only the results region and the history list. */
+export function renderApp(root: HTMLElement, handlers: AppHandlers): AppView {
   const results = createElement('section', {
     className: 'results',
     attrs: { 'aria-label': 'Search results', 'aria-live': 'polite' },
@@ -29,6 +36,12 @@ export function renderApp(root: HTMLElement, handlers: AppHandlers): SearchState
   const details = createCountryDetails();
   const resultsHandlers: ResultsHandlers = { onRetry: handlers.onRetry, onSelect: details.open };
 
+  const searchInput = createSearchInput(handlers.onSearch);
+  const history = createHistoryList((query) => {
+    searchInput.setValue(query);
+    handlers.onHistorySelect(query);
+  });
+
   const app = createElement('div', {
     className: 'app',
     children: [
@@ -36,19 +49,19 @@ export function renderApp(root: HTMLElement, handlers: AppHandlers): SearchState
         className: 'app__header',
         children: [createElement('h1', { className: 'app__title', text: 'Country Search' })],
       }),
-      createElement('main', { className: 'app__main', children: [createSearchInput(handlers.onSearch), results] }),
+      createElement('main', { className: 'app__main', children: [searchInput.element, history.element, results] }),
       details.element,
     ],
   });
 
-  const update: SearchStateListener = (state) => {
+  const showState: SearchStateListener = (state) => {
     results.replaceChildren(...renderResults(state, resultsHandlers));
   };
 
   root.append(app);
-  update({ status: 'idle' });
+  showState({ status: 'idle' });
 
-  return update;
+  return { showState, showHistory: history.show };
 }
 
 function renderResults(state: SearchState, handlers: ResultsHandlers): Node[] {
